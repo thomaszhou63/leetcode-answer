@@ -29,6 +29,7 @@ let combinationSum = function(candidates, target) {
       dfs(sum + candidates[i], i, newTmp); // DFS
     }
   }
+
   function sorting(a, b){
     if(a > b){
       return 1;
