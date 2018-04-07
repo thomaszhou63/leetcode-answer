@@ -1,7 +1,7 @@
 /**
  * @param {string} s
  * @return {number}
- * 
+ *
  * key mind : 进制转换
  * tip1: A的ascII码是65
  * tip2: A～Z 长度为 26
