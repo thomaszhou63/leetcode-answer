@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+
+
+  /**			题目： 字符串全排列
+	 *
+	 * input: 'abc'
+	 * output:  ["abc", "bac", "bca", "acb", "cab", "cba"]
+	 *
+	 * 主要逻辑：肯定是需要递归的~先将第一个字母取出，然后将剩下的字符串全排列。将这个字母，依次插入到每个排列所有缝隙。
+   如：abc进行全排列，取出a，得到全排列bc和cb，先向bc插，可以得到abc，bac，bca；再向cb插，得到acb，cab，cba；
+   */
+  function fun(str){
+    var result = [];
+
+    if(str.length == 1 || str.length == 0 ){
+      result.push(str);
+      return result;
+    }else{
+      var one = str.substr(0,1);
+      var left = str.substr(1);
+      var leftResult = fun(left);
+      for(i=0;i<leftResult.length;i++){
+        for(j=0;j<leftResult[i].length+1;j++){//加1的目的是让字符one也可以插入到最后一个位置
+          result.push(leftResult[i].slice(0,j) + one + leftResult[i].slice(j));
+        }
+      }
+    }
+    return result;
+  }
+
+  console.log(fun('abc'));
+
+  // method2: 数组的迭代方法来实现
+  const anagrams = str => {
+    if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+    return str.split('').reduce((acc, letter, i) =>
+      acc.concat(anagrams(str.slice(0, i) + str.slice(i + 1)).map(val => letter + val)), []);
+  };
+
+  console.log(anagrams('abc'));
+</script>
+</body>
+</html>
